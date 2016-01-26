@@ -1,0 +1,33 @@
+<head>
+  <title>homejs</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-3"> {{> leftbar}} </div>
+      <div class="col-sm-6" style="border: 5px solid red;"> {{> middlebar}} </div>
+      <div class="col-sm-3"> {{> rightbar}} </div>
+    </div>
+  </div>
+</body>
+
+<template name="leftbar">
+  left
+  {{> weatherbox}}
+</template>
+
+<template name="middlebar">
+  middle
+</template>
+
+<template name="rightbar">
+  right
+</template>
+
+<template name="weatherbox">
+<row>Currently: {{conditions}}</row>
+<row>Temperature: {{temperature}}</row>
+<row>Humidity: {{humidity}}</row>
+</template>
