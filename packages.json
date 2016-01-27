@@ -1,3 +1,4 @@
 {
-  "forecast": "0.2.1"
+  "forecast": "0.2.1",
+  "snmp-native":"1.0.20"
 }

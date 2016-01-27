@@ -16,6 +16,7 @@
 <template name="leftbar">
   left
   {{> weatherbox}}
+  {{> pfsensebox}}
 </template>
 
 <template name="middlebar">
@@ -30,4 +31,9 @@
 <row>Currently: {{conditions}}</row>
 <row>Temperature: {{temperature}}</row>
 <row>Humidity: {{humidity}}</row>
+</template>
+
+<template name="pfsensebox">
+  <row>In: {{in}}</row>
+  <row>Out: {{out}}</row>
 </template>
