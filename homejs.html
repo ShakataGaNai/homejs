@@ -3,37 +3,105 @@
 </head>
 
 <body>
-  <div class="container">
-
-    <div class="row">
-      <div class="col-sm-3"> {{> leftbar}} </div>
-      <div class="col-sm-6" style="border: 5px solid red;"> {{> middlebar}} </div>
-      <div class="col-sm-3"> {{> rightbar}} </div>
+    <div class="container">
+        <div class="row" id="all">
+            {{> leftbar}}
+            {{> middlebar}}
+            {{> rightbar}}
+        </div>
     </div>
-  </div>
 </body>
 
+
 <template name="leftbar">
-  left
-  {{> weatherbox}}
-  {{> pfsensebox}}
+  <div class="col-md-3" id="leftbar">
+    {{> weatherbox}}
+    {{> pfsensebox}}
+  </div>
 </template>
 
 <template name="middlebar">
-  middle
+  <div class="col-md-6" id="middlebar">
+    {{> centerwidget}}
+  </div>
 </template>
 
 <template name="rightbar">
-  right
+  <div class="col-md-3" id="rightbar">
+    {{> pingbox}}
+  </div>
 </template>
 
 <template name="weatherbox">
-<row>Currently: {{conditions}}</row>
-<row>Temperature: {{temperature}}</row>
-<row>Humidity: {{humidity}}</row>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Weather</h3></div>
+            <div class="panel-body"><span>
+              Currently: {{conditions}}<br>
+              Temperature: {{temperature}}<br>
+              Humidity: {{humidity}}<br>
+            </span></div>
+        </div>
+    </div>
+  </div>
 </template>
 
 <template name="pfsensebox">
-  <row>In: {{in}}</row>
-  <row>Out: {{out}}</row>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Internet</h3></div>
+            <div class="panel-body"><span>
+              {{intext}} Download
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{inpercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{inpercent}}%; min-width: 1em;">
+                </div>
+              </div>
+              {{outtext}} Upload
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{outpercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{outpercent}}%; min-width: 1em;">
+                </div>
+              </div>
+            </span></div>
+        </div>
+    </div>
+  </div>
+</template>
+
+<template name="centerwidget">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Center Widget</h3></div>
+            <div class="panel-body"><span>
+              Some info here
+            </span></div>
+        </div>
+    </div>
+  </div>
+</template>
+
+<template name="pingbox">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Network Health</h3></div>
+            <div class="panel-body"><span>
+              <ul class="list-group">
+              {{#each pingTarget}}
+              <li class="list-group-item" style="background-color: hsla({{hslaCheat}}, 100%, 50%, 0.4);">
+                <span class="badge">{{average}} ms</span>
+                {{_id}}
+              </li>
+              {{/each}}
+              </ul>
+            </span></div>
+        </div>
+    </div>
+  </div>
 </template>

@@ -1,4 +1,5 @@
 {
   "forecast": "0.2.1",
-  "snmp-native":"1.0.20"
+  "snmp-native":"1.0.20",
+  "tcp-ping":"0.1.1"
 }
