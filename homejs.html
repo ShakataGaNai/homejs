@@ -1,9 +1,14 @@
 <head>
   <title>homejs</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="initial-scale=1.0">
+  <script src="skycons.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row" id="all">
             {{> leftbar}}
             {{> middlebar}}
@@ -14,34 +19,35 @@
 
 
 <template name="leftbar">
-  <div class="col-md-3" id="leftbar">
+  <div class="col-sm-3" id="leftbar">
     {{> weatherbox}}
     {{> pfsensebox}}
   </div>
 </template>
 
 <template name="middlebar">
-  <div class="col-md-6" id="middlebar">
+  <div class="col-sm-6" id="middlebar">
     {{> centerwidget}}
   </div>
 </template>
 
 <template name="rightbar">
-  <div class="col-md-3" id="rightbar">
+  <div class="col-sm-3" id="rightbar">
     {{> pingbox}}
   </div>
 </template>
 
 <template name="weatherbox">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Weather</h3></div>
             <div class="panel-body"><span>
+		<div style="margin-left: auto; margin-right: auto; width:128px;"><canvas id="icon1" width="128" height="128"></canvas></div>
               Currently: {{conditions}}<br>
-              Temperature: {{temperature}}<br>
-              Humidity: {{humidity}}<br>
+              Temperature: {{temperature}} F<br>
+              Humidity: {{humidity}} %<br>
             </span></div>
         </div>
     </div>
@@ -50,7 +56,7 @@
 
 <template name="pfsensebox">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Internet</h3></div>
@@ -73,10 +79,10 @@
 
 <template name="centerwidget">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Center Widget</h3></div>
+                <h3 class="panel-title"><a href="location.reload();">Center Widget</a></h3></div>
             <div class="panel-body"><span>
               Some info here
             </span></div>
@@ -87,7 +93,7 @@
 
 <template name="pingbox">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Network Health</h3></div>

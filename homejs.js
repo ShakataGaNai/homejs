@@ -6,14 +6,32 @@ if (Meteor.isClient) {
 
   Template.weatherbox.helpers({
     conditions: function () {
-      return Weather.findOne('conditions').value;
+      var x = 0;
+      x = Weather.findOne('conditions').value;
+      return x;
     },
     temperature: function () {
       return Weather.findOne('temperature').value;
     },
     humidity: function () {
       return Weather.findOne('humidity').value;
-    }
+    },
+    icon: function () {
+      return Weather.findOne('icon').value;
+    },
+    all: function () {
+      return JSON.stringify(Weather.findOne('all').value);
+    },
+  });
+  Template.weatherbox.onRendered(function () {
+    console.log("weatherbox render");
+    iconify();
+  });
+  var watchWeather = Weather.find().observeChanges({
+    changed: function (id, fields) {
+        console.log("weather change:" + id);
+        iconify(true);
+    },
   });
   Template.pfsensebox.helpers({
     inpercent: function () {
@@ -72,9 +90,11 @@ function updateForecast(){
   forecast.get(Meteor.settings.ForecastLocation, Meteor.bindEnvironment(function(err, result) {
   if(err) return console.dir(err);
     //console.dir(weather);
+    Weather.upsert("icon",{$set: {value: result.currently.icon}});
     Weather.upsert("conditions",{$set: {value: result.currently.summary}});
     Weather.upsert("temperature",{$set: {value: Math.round(parseFloat(result.currently.temperature, 10))}});
     Weather.upsert("humidity",{$set: {value: result.currently.humidity * 100}});
+    Weather.upsert("all",{$set: {value: result}});
   }));
 }
 
@@ -166,4 +186,19 @@ function goPing(){
   // { sent: 10, recieved: 10, loss: 0, time: 9010 }
    console.log(data);
  }); */
+}
+function iconify(up){
+  console.log("iconify()");
+  var x = Weather.findOne('icon').value;
+  var icons = new Skycons();
+  if(up){
+    console.log("update" + x);
+    //icons.remove('icon1');
+    //icons.add('icon1',x);
+    icons.set('icon1', x); 
+  }else{
+    console.log("add" + x);
+    icons.add('icon1', x);
+  }
+  icons.play();
 }
